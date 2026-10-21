@@ -1,10 +1,7 @@
 openapi: 3.0.3
 info:
   title: Domain PSD2 API
-  version: 1.0.0
-  contact:
-    name: Firefly Software Foundation
-    email: dev@fireflysoftware.io
+  version: 26.10.4
 paths:
   /api/v1/consents/{id}:
     get:
@@ -17,14 +14,15 @@ paths:
           schema: {type: string, format: uuid}
       responses:
         "200":
-          description: Found
+          description: Consent
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RecordView"
+                $ref: "#/components/schemas/ConsentView"
+  /api/v1/consents/{id}/status:
     put:
       tags: [Consents]
-      operationId: update
+      operationId: updateStatus
       parameters:
         - name: id
           in: path
@@ -35,21 +33,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RecordView"
+              $ref: "#/components/schemas/StoredConsent"
       responses:
         "200":
-          description: Updated
-    delete:
-      tags: [Consents]
-      operationId: remove
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema: {type: string, format: uuid}
-      responses:
-        "204":
-          description: Removed
+          description: Status updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredConsent"
   /api/v1/consents:
     post:
       tags: [Consents]
@@ -59,13 +50,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RecordView"
+              $ref: "#/components/schemas/ConsentDraft"
       responses:
-        "201":
-          description: Created
+        "200":
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredConsent"
 components:
   schemas:
-    RecordView:
+    ConsentView:
       type: object
       properties:
         id:
@@ -73,3 +68,14 @@ components:
           format: uuid
         label:
           type: string
+    StoredConsent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+    ConsentDraft:
+      type: object
+      additionalProperties: true
