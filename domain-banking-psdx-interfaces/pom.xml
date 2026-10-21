@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.fireflysoftware</groupId>
         <artifactId>domain-banking-psdx</artifactId>
-        <version>26.10.4</version>
+        <version>26.10.5</version>
     </parent>
     <artifactId>domain-banking-psdx-interfaces</artifactId>
     <name>domain-banking-psdx-interfaces</name>
