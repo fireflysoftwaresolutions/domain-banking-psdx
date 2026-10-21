@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Foundation
+ * Copyright 2026 Firefly Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,7 @@
  * limitations under the License.
  */
 
-package io.fireflysoftware.domain.banking.psdx;
-
-import reactor.core.publisher.Mono;
-
+package io.fireflysoftware.domain.banking.psdx.core.consent.commands;
+import org.fireflyframework.cqrs.command.Command;
 import java.util.UUID;
-
-/** Default adapter. Returns one sample row and does not call the core. */
-public final class SandboxAdapter implements CorePort {
-    @Override
-    public Mono<ConsentView> read(UUID id) {
-        UUID resolved = id == null ? UUID.fromString("00000000-0000-4000-8000-000000000001") : id;
-        return Mono.just(new ConsentView(resolved, "RECEIVED"));
-    }
-}
+public record RemoveConsentCommand(UUID id) implements Command<Void> {}

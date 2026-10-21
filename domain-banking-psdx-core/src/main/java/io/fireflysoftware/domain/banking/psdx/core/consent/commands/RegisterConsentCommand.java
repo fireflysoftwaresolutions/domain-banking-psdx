@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Foundation
+ * Copyright 2026 Firefly Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-package io.fireflysoftware.domain.banking.psdx;
-
-import reactor.core.publisher.Mono;
-
-import java.util.UUID;
-
-/** Reads the core through its SDK when the live adapter is selected. Sandbox does not open a socket. */
-public interface CorePort {
-    Mono<ConsentView> read(UUID id);
-}
+package io.fireflysoftware.domain.banking.psdx.core.consent.commands;
+import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentRequestDTO;
+import io.fireflysoftware.domain.banking.psdx.core.consent.StoredConsent;
+import org.fireflyframework.cqrs.command.Command;
+public record RegisterConsentCommand(PSDConsentRequestDTO draft) implements Command<StoredConsent> {}

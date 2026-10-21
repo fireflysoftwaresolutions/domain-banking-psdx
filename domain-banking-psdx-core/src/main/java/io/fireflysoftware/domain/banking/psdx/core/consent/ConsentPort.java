@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Foundation
+ * Copyright 2026 Firefly Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-package io.fireflysoftware.domain.banking.psdx;
-
+package io.fireflysoftware.domain.banking.psdx.core.consent;
+import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentRequestDTO;
+import reactor.core.publisher.Mono;
 import java.util.UUID;
-
-public record ConsentView(UUID id, String label) {
+public interface ConsentPort {
+    Mono<ConsentView> read(UUID id);
+    Mono<StoredConsent> load(UUID id);
+    Mono<StoredConsent> create(PSDConsentRequestDTO draft);
+    Mono<StoredConsent> updateStatus(UUID id, String status);
+    Mono<Void> remove(UUID id);
 }
