@@ -58,6 +58,360 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/StoredConsent"
+  /api/v1/directory/parties/{partyId}/accounts:
+    get:
+      tags: [Directory]
+      operationId: accountsForParty
+      parameters:
+        - name: partyId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Accounts read from the accounts and contract cores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AccountView"
+  /api/v1/directory/accounts/{accountId}:
+    get:
+      tags: [Directory]
+      operationId: account
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountView"
+  /api/v1/directory/accounts/{accountId}/balances:
+    get:
+      tags: [Directory]
+      operationId: balances
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Balances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceView"
+  /api/v1/directory/account-references/balances:
+    get:
+      tags: [Directory]
+      operationId: balancesForReference
+      parameters:
+        - name: reference
+          in: query
+          required: true
+          schema: {type: string}
+      responses:
+        "200":
+          description: Balances for an account number
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceView"
+  /api/v1/directory/parties/{partyId}/cards:
+    get:
+      tags: [Directory]
+      operationId: cardsForParty
+      parameters:
+        - name: partyId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+  /api/v1/directory/cards/{cardId}:
+    get:
+      tags: [Directory]
+      operationId: card
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Card
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/v1/directory/cards/{cardId}/balances:
+    get:
+      tags: [Directory]
+      operationId: cardBalances
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Card balances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceView"
+  /api/v1/directory/cards/{cardId}/transactions:
+    get:
+      tags: [Directory]
+      operationId: cardTransactions
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+        - name: from
+          in: query
+          required: false
+          schema: {type: string, format: date}
+        - name: to
+          in: query
+          required: false
+          schema: {type: string, format: date}
+      responses:
+        "200":
+          description: Card transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionView"
+  /api/v1/directory/cards/{cardId}/transactions/{transactionId}:
+    get:
+      tags: [Directory]
+      operationId: cardTransaction
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+        - name: transactionId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Card transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionView"
+  /api/v1/directory/payments:
+    post:
+      tags: [Directory]
+      operationId: initiatePayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentDraft"
+      responses:
+        "200":
+          description: Payment order created in the payments core
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentView"
+  /api/v1/directory/payments/{paymentId}:
+    get:
+      tags: [Directory]
+      operationId: payment
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Payment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentView"
+  /api/v1/directory/payments/{paymentId}/status:
+    get:
+      tags: [Directory]
+      operationId: paymentStatus
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Payment status
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/v1/directory/payments/{paymentId}/cancel:
+    post:
+      tags: [Directory]
+      operationId: cancelPayment
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Cancellation result
+          content:
+            application/json:
+              schema: {type: boolean}
+  /api/v1/directory/payments/{paymentId}/authorize:
+    post:
+      tags: [Directory]
+      operationId: authorizePayment
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+        - name: authorizationCode
+          in: query
+          required: true
+          schema: {type: string}
+      responses:
+        "200":
+          description: Payment after authorization
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentView"
+  /api/v1/directory/accounts/{accountId}/transactions:
+    get:
+      tags: [Directory]
+      operationId: transactions
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+        - name: from
+          in: query
+          required: false
+          schema: {type: string, format: date}
+        - name: to
+          in: query
+          required: false
+          schema: {type: string, format: date}
+      responses:
+        "200":
+          description: Ledger transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionView"
+  /api/v1/directory/transactions/{transactionId}:
+    get:
+      tags: [Directory]
+      operationId: transaction
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Ledger transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionView"
+  /api/v1/directory/sca/authenticate:
+    post:
+      tags: [Directory]
+      operationId: authenticate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Challenge issued by the SCA core
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/v1/directory/sca/validate:
+    post:
+      tags: [Directory]
+      operationId: validateSca
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: SCA validation recorded by the SCA core
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/v1/directory/sca/required:
+    get:
+      tags: [Directory]
+      operationId: scaRequired
+      parameters:
+        - name: amount
+          in: query
+          required: true
+          schema: {type: number, format: double}
+        - name: currency
+          in: query
+          required: true
+          schema: {type: string}
+      responses:
+        "200":
+          description: Whether SCA is required
+          content:
+            application/json:
+              schema: {type: boolean}
 components:
   schemas:
     ConsentView:
@@ -79,3 +433,51 @@ components:
     ConsentDraft:
       type: object
       additionalProperties: true
+    AccountView:
+      type: object
+      properties:
+        resourceId: {type: string, format: uuid}
+        ownerPartyId: {type: string, format: uuid}
+        iban: {type: string}
+        currency: {type: string}
+        name: {type: string}
+        product: {type: string}
+        status: {type: string}
+    BalanceView:
+      type: object
+      properties:
+        balanceType: {type: string}
+        creditDebitIndicator: {type: string}
+        balanceAmount:
+          type: object
+          additionalProperties: true
+    TransactionView:
+      type: object
+      properties:
+        transactionId: {type: string, format: uuid}
+        transactionStatus: {type: string}
+        bookingDate: {type: string, format: date}
+        valueDate: {type: string, format: date}
+        creditorName: {type: string}
+    PaymentDraft:
+      type: object
+      properties:
+        creditorName: {type: string}
+        endToEndIdentification: {type: string}
+        remittanceInformationUnstructured: {type: string}
+        instructedAmount:
+          type: object
+          properties:
+            amount: {type: number}
+            currency: {type: string}
+        creditorAccount:
+          type: object
+          properties:
+            iban: {type: string}
+    PaymentView:
+      type: object
+      properties:
+        paymentId: {type: string, format: uuid}
+        transactionStatus: {type: string}
+        creditorName: {type: string}
+        endToEndIdentification: {type: string}

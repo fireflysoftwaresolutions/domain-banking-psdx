@@ -19,6 +19,41 @@
             <version>26.10.5</version>
         </dependency>
         <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-psdx-interfaces</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-accounts-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-cards-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-payments-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-ledger-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-common-contract-mgmt-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-common-sca-mgmt-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.fireflyframework</groupId>
             <artifactId>fireflyframework-starter-domain</artifactId>
         </dependency>
