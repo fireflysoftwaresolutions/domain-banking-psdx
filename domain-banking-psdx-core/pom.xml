@@ -54,6 +54,11 @@
             <version>26.10.5</version>
         </dependency>
         <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-common-user-mgmt-sdk</artifactId>
+            <version>26.10.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.fireflyframework</groupId>
             <artifactId>fireflyframework-starter-domain</artifactId>
         </dependency>

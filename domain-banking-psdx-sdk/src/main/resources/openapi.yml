@@ -412,6 +412,25 @@ paths:
           content:
             application/json:
               schema: {type: boolean}
+  /api/v1/directory/staff:
+    post:
+      tags: [Directory]
+      operationId: authenticateStaff
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StaffSignIn"
+      responses:
+        "200":
+          description: Staff account read from core-common-user-mgmt
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StaffPrincipal"
+        "401":
+          description: Staff account was not accepted
 components:
   schemas:
     ConsentView:
@@ -481,3 +500,14 @@ components:
         transactionStatus: {type: string}
         creditorName: {type: string}
         endToEndIdentification: {type: string}
+    StaffSignIn:
+      type: object
+      required: [username, password]
+      properties:
+        username: {type: string}
+        password: {type: string}
+    StaffPrincipal:
+      type: object
+      properties:
+        id: {type: string, format: uuid}
+        username: {type: string}
