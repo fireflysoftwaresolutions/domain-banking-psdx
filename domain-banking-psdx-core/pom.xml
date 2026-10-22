@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.fireflysoftware</groupId>
         <artifactId>domain-banking-psdx</artifactId>
-        <version>26.10.5</version>
+        <version>26.10.6</version>
     </parent>
     <artifactId>domain-banking-psdx-core</artifactId>
     <name>domain-banking-psdx-core</name>
@@ -16,47 +16,47 @@
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-psdx-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-psdx-interfaces</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-accounts-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-cards-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-payments-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-ledger-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-common-contract-mgmt-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-common-sca-mgmt-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-common-user-mgmt-sdk</artifactId>
-            <version>26.10.5</version>
+            <version>26.10.6</version>
         </dependency>
         <dependency>
             <groupId>org.fireflyframework</groupId>

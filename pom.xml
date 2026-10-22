@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.fireflysoftware</groupId>
         <artifactId>firefly-parent</artifactId>
-        <version>26.10.5</version>
+        <version>26.10.6</version>
         <relativePath/>
     </parent>
     <artifactId>domain-banking-psdx</artifactId>
-    <version>26.10.5</version>
+    <version>26.10.6</version>
     <packaging>pom</packaging>
     <name>domain-banking-psdx</name>
     <description>Sandbox is the default and opens no socket. Live calls the core SDK.</description>
