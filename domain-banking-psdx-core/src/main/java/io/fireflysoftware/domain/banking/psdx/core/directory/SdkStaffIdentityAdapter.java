@@ -30,7 +30,7 @@ import java.util.UUID;
  * Looks up a staff account through {@code UserAccountsApi}. core-common-user-mgmt publishes
  * no password, so {@link #authenticate} succeeds only when a {@link PasswordVerifier} is present.
  * Selected when {@code integration.identity.enabled=true}. The account base URL is
- * {@code integration.identity.base-url}. An installer replaces {@link HttpPasswordVerifier}.
+ * {@code integration.identity.base-url}. An installer replaces {@link HttpPasswordVerifierImpl}.
  */
 public final class SdkStaffIdentityAdapter {
 

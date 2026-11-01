@@ -30,14 +30,14 @@ class SdkConsentAdapterTest {
     @Test void sandboxIsTheDefaultAndDoesNotOpenASocket() {
         new ApplicationContextRunner().withUserConfiguration(ConsentAdapterConfiguration.class).run(context -> {
             ConsentPort port = context.getBean(ConsentPort.class);
-            assertThat(port).isInstanceOf(SandboxConsentAdapter.class);
+            assertThat(port).isInstanceOf(SandboxConsentAdapterImpl.class);
             assertThat(port.read(null).block().label()).isEqualTo("RECEIVED");
         });
     }
     @Test void corePropertySelectsTheSdkAdapter() {
         new ApplicationContextRunner().withUserConfiguration(ConsentAdapterConfiguration.class, ConsentClientFactory.class)
                 .withPropertyValues("firefly.psdx.consent.adapter=core")
-                .run(context -> assertThat(context.getBean(ConsentPort.class)).isInstanceOf(SdkConsentAdapter.class));
+                .run(context -> assertThat(context.getBean(ConsentPort.class)).isInstanceOf(SdkConsentAdapterImpl.class));
     }
     @Test void liveReadCallsTheCoreSdk() {
         UUID id = UUID.randomUUID();
@@ -45,7 +45,7 @@ class SdkConsentAdapterTest {
         PSDConsentDTO dto = mock(PSDConsentDTO.class);
         when(dto.getId()).thenReturn(id);
         when(api.getConsent(id, null)).thenReturn(Mono.just(dto));
-        assertThat(new SdkConsentAdapter(api).read(id).block().id()).isEqualTo(id);
+        assertThat(new SdkConsentAdapterImpl(api).read(id).block().id()).isEqualTo(id);
         verify(api).getConsent(id, null);
     }
 }

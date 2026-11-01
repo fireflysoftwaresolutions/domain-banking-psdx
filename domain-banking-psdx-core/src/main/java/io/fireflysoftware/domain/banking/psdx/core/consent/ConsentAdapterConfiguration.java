@@ -23,8 +23,8 @@ import org.springframework.context.annotation.Configuration;
 public class ConsentAdapterConfiguration {
     @Bean
     @ConditionalOnProperty(prefix = "firefly.psdx.consent", name = "adapter", havingValue = "sandbox", matchIfMissing = true)
-    public ConsentPort sandboxConsentPort() { return new SandboxConsentAdapter(); }
+    public ConsentPort sandboxConsentPort() { return new SandboxConsentAdapterImpl(); }
     @Bean
     @ConditionalOnProperty(prefix = "firefly.psdx.consent", name = "adapter", havingValue = "core")
-    public ConsentPort coreConsentPort(ConsentManagementApi api) { return new SdkConsentAdapter(api); }
+    public ConsentPort coreConsentPort(ConsentManagementApi api) { return new SdkConsentAdapterImpl(api); }
 }
