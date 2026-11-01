@@ -16,7 +16,7 @@
 
 package io.fireflysoftware.domain.banking.psdx.web;
 import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentRequestDTO;
-import io.fireflysoftware.domain.banking.psdx.core.consent.ConsentService;
+import io.fireflysoftware.domain.banking.psdx.core.consent.ConsentServiceImpl;
 import io.fireflysoftware.domain.banking.psdx.core.consent.ConsentView;
 import io.fireflysoftware.domain.banking.psdx.core.consent.StoredConsent;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +31,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/consents")
 public class ConsentController {
-    private final ConsentService service;
-    public ConsentController(ConsentService service) { this.service = service; }
+    private final ConsentServiceImpl service;
+    public ConsentController(ConsentServiceImpl service) { this.service = service; }
     @GetMapping("/{id}") public Mono<ConsentView> read(@PathVariable UUID id) { return service.read(id); }
     @PostMapping public Mono<StoredConsent> create(@RequestBody PSDConsentRequestDTO draft) { return service.register(draft); }
     @PutMapping("/{id}/status") public Mono<StoredConsent> status(@PathVariable UUID id, @RequestBody StoredConsent body) {

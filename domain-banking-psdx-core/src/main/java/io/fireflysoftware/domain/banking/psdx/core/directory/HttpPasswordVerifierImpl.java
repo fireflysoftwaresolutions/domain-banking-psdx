@@ -29,11 +29,11 @@ import java.util.Map;
  * A 2xx response accepts the password. Any other outcome rejects it.
  * An installer replaces this class when the verifier protocol is different.
  */
-public final class HttpPasswordVerifier implements PasswordVerifier {
+public final class HttpPasswordVerifierImpl implements PasswordVerifier {
 
     private final WebClient client;
 
-    public HttpPasswordVerifier(String endpoint) {
+    public HttpPasswordVerifierImpl(String endpoint) {
         this(client(endpoint));
     }
 
@@ -44,7 +44,7 @@ public final class HttpPasswordVerifier implements PasswordVerifier {
         return WebClient.builder().baseUrl(SdkCalls.base(endpoint)).build();
     }
 
-    HttpPasswordVerifier(WebClient client) {
+    HttpPasswordVerifierImpl(WebClient client) {
         this.client = client;
     }
 

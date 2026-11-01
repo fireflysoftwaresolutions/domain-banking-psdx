@@ -27,11 +27,11 @@ import org.fireflyframework.orchestration.saga.engine.StepInputs;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import java.util.UUID;
-@Service
-public class ConsentService {
+@Service("consentService")
+public class ConsentServiceImpl {
     private final SagaEngine engine;
     private final ConsentPort port;
-    public ConsentService(SagaEngine engine, ConsentPort port) { this.engine = engine; this.port = port; }
+    public ConsentServiceImpl(SagaEngine engine, ConsentPort port) { this.engine = engine; this.port = port; }
     public Mono<ConsentView> read(UUID id) { return port.read(id); }
     public Mono<StoredConsent> register(PSDConsentRequestDTO draft) {
         StepInputs inputs = StepInputs.builder().forStepId(RegisterConsentSaga.STEP, new RegisterConsentCommand(draft)).build();

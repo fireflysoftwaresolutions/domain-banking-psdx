@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
  * Checks a presented password. core-common-user-mgmt publishes no password.
  * {@link SdkStaffIdentityAdapter} calls an implementation only when
  * {@code integration.identity.verifier-url} is set.
- * {@link HttpPasswordVerifier} is the class an installer replaces.
+ * {@link HttpPasswordVerifierImpl} is the class an installer replaces.
  */
 public interface PasswordVerifier {
 

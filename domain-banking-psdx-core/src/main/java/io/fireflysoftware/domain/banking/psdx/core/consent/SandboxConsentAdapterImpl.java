@@ -19,7 +19,7 @@ import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentRequestDTO;
 import reactor.core.publisher.Mono;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-public final class SandboxConsentAdapter implements ConsentPort {
+public final class SandboxConsentAdapterImpl implements ConsentPort {
     private final ConcurrentHashMap<UUID, String> rows = new ConcurrentHashMap<>();
     @Override public Mono<ConsentView> read(UUID id) {
         if (id != null && rows.containsKey(id)) return Mono.just(new ConsentView(id, rows.get(id)));

@@ -97,10 +97,10 @@ class SdkStaffIdentityAdapterTest {
                     return Mono.just(ClientResponse.create(HttpStatus.NO_CONTENT).build());
                 })
                 .build();
-        assertThat(new HttpPasswordVerifier(client).matches("ada@example.com", "secret").block(Duration.ofSeconds(2)))
+        assertThat(new HttpPasswordVerifierImpl(client).matches("ada@example.com", "secret").block(Duration.ofSeconds(2)))
                 .isTrue();
         assertThat(seen.get()).isEqualTo("http://verifier.internal/check");
-        assertThatThrownBy(() -> new HttpPasswordVerifier(" "))
+        assertThatThrownBy(() -> new HttpPasswordVerifierImpl(" "))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("verifier-url");
     }

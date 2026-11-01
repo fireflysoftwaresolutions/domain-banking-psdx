@@ -20,9 +20,9 @@ import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentRequestDTO;
 import io.fireflysoftware.core.banking.psdx.sdk.model.PSDConsentStatusDTO;
 import reactor.core.publisher.Mono;
 import java.util.UUID;
-public final class SdkConsentAdapter implements ConsentPort {
+public final class SdkConsentAdapterImpl implements ConsentPort {
     private final ConsentManagementApi api;
-    public SdkConsentAdapter(ConsentManagementApi api) { this.api = api; }
+    public SdkConsentAdapterImpl(ConsentManagementApi api) { this.api = api; }
     @Override public Mono<ConsentView> read(UUID id) {
         return api.getConsent(id, null).map(dto -> new ConsentView(dto.getId(), dto.getConsentStatus()));
     }

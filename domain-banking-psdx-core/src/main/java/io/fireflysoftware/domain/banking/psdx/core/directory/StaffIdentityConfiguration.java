@@ -40,7 +40,7 @@ public class StaffIdentityConfiguration {
         client.setBasePath(SdkCalls.base(baseUrl));
         PasswordVerifier verifier = verifierUrl == null || verifierUrl.isBlank()
                 ? null
-                : new HttpPasswordVerifier(verifierUrl);
+                : new HttpPasswordVerifierImpl(verifierUrl);
         return new SdkStaffIdentityAdapter(new UserAccountsApi(client), verifier);
     }
 }
